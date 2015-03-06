@@ -1,0 +1,32 @@
+1->
+安装java运行库
+    从“ftp://192.168.1.17/public_d/Tools”中下载“jdk-6u37-linux-x64.bin”。
+    安装“jdk-6u37-linux-x64.bin”，使用如下命令进行操作：
+{
+    chmod 777 jdk-6u37-linux-x64.bin
+    sudo ./jdk-6u37-linux-x64.bin
+    sudo cp /etc/profile /etc/profile-bak
+    sudo chmod 777 /etc/profile
+    sudo passwd root
+    sudo vi /etc/profile
+      ----------{
+      export JAVA_HOME=/home/yourname/ecs/tools/jdk1.6.0_37
+      export JRE_HOME=$JAVA_HOME/jre
+      export CLASSPATH=$JAVA_HOME/lib:$JRE_HOME/lib:$CLASSPATH
+      export PATH=$JAVA_HOME/bin:$PATH:$JRE_HOME/bin
+      }
+    source /etc/profile
+    java -version
+}
+
+
+2->测试脚本的运行依赖于Android SDK中的monkeyrunner,从“ftp://192.168.1.17/public_d/zhanglei" 下载 Android_SDK 
+进入 adt-bundle-linux-x86_64-20131030/sdk/tools/scripts/autoTest 目录
+Cmaera switch test:
+../../monkeyrunner cameraSwitchStressTest.py loop device_id
+
+Install And Uninstall Apk Test:
+../../monkeyrunner installAndUninstallApkTest.py  device_id
+
+Camera take picture:
+../../monkeyrunner cameraTakePicture.py loop device_id
